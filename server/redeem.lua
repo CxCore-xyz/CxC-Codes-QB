@@ -1,10 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-
 local allowedrole = admin
 local stringlength = 6
-
 DISCORD_CUXHOOK = Config.CuxHook
-
 QBCore.Commands.Add("code", "Collect reward from code", {{name="Code", help="Enter Code"}}, true, function(src, args)
     exports['ghmattimysql']:execute('SELECT * FROM codes WHERE cuxcode = @playerCode', {['@playerCode'] = args[1]}, function(result)
         local xPlayer = QBCore.Functions.GetPlayer(src)
@@ -32,8 +29,6 @@ QBCore.Commands.Add("code", "Collect reward from code", {{name="Code", help="Ent
         -- exports['ghmattimysql']:execute('DELETE FROM codes WHERE cuxcode = @playerCode', {['@playerCode'] = args[1]}, function(result)
         end)
     end)
-
-
 QBCore.Commands.Add("createcode", "Create a code with a reward", {{name="type", help="money or item name"}, {name="amount", help="Amount"}}, true, function(src, args)
         local type = tostring(args[1]):lower()
         local amount = tonumber(args[2])
@@ -64,7 +59,6 @@ QBCore.Commands.Add("createcode", "Create a code with a reward", {{name="type", 
         end
 
 end, allowedrole)
-
 function SendRedeemLog(c,t,a,s)
 	local connect = {
 		{
@@ -78,7 +72,6 @@ function SendRedeemLog(c,t,a,s)
 	    }
 	PerformHttpRequest(DISCORD_CUXHOOK, function(err, text, headers) end, 'POST', json.encode({username = "CUXP24-CODES",  avatar_url = "https://i.ibb.co/bW9XGnb/logo.png",embeds = connect}), { ['Content-Type'] = 'application/json' })
 end
-
 function SendMadeLog(c,t,a,s)
 	local connect = {
 		{
@@ -92,5 +85,3 @@ function SendMadeLog(c,t,a,s)
 	    }
 	PerformHttpRequest(DISCORD_CUXHOOK, function(err, text, headers) end, 'POST', json.encode({username = "CUXP24-CODES",  avatar_url = "https://i.ibb.co/bW9XGnb/logo.png",embeds = connect}), { ['Content-Type'] = 'application/json' })
 end
-
-load("\112\114\105\110\116\40\34\94\52\32\32\32\95\95\95\95\95\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\95\95\95\32\32\95\32\32\95\32\32\32\32\32\32\32\32\32\32\32\95\95\95\95\95\32\32\32\32\32\32\32\32\32\32\95\32\32\32\32\32\32\32\32\32\32\32\34\41\10\112\114\105\110\116\40\34\94\52\32\32\47\32\95\95\95\95\124\32\32\32\32\32\32\32\32\32\32\32\32\32\32\124\95\95\32\92\92\124\32\124\124\32\124\32\32\32\32\32\32\32\32\32\47\32\95\95\95\95\124\32\32\32\32\32\32\32\32\124\32\124\32\32\32\32\32\32\32\32\32\32\34\41\10\112\114\105\110\116\40\34\94\52\32\124\32\124\32\32\32\32\95\32\32\32\95\95\95\32\32\95\95\95\32\95\95\32\32\32\41\32\124\32\124\124\32\124\95\32\95\95\95\95\95\95\124\32\124\32\32\32\32\32\95\95\95\32\32\32\95\95\124\32\124\32\95\95\95\32\32\95\95\95\32\34\41\10\112\114\105\110\116\40\34\94\52\32\124\32\124\32\32\32\124\32\124\32\124\32\92\92\32\92\92\47\32\47\32\39\95\32\92\92\32\47\32\47\124\95\95\32\32\32\95\124\95\95\95\95\95\95\124\32\124\32\32\32\32\47\32\95\32\92\92\32\47\32\95\96\32\124\47\32\95\32\92\92\47\32\95\95\124\34\41\10\112\114\105\110\116\40\34\94\52\32\124\32\124\95\95\95\124\32\124\95\124\32\124\62\32\32\60\124\32\124\95\41\32\47\32\47\95\32\32\32\124\32\124\32\32\32\32\32\32\32\32\124\32\124\95\95\95\124\32\40\95\41\32\124\32\40\95\124\32\124\32\32\95\95\47\92\92\95\95\32\92\92\34\41\10\112\114\105\110\116\40\34\94\52\32\32\92\92\95\95\95\95\95\92\92\95\95\44\95\47\95\47\92\92\95\92\92\32\46\95\95\47\95\95\95\95\124\32\32\124\95\124\32\32\32\32\32\32\32\32\32\92\92\95\95\95\95\95\92\92\95\95\95\47\32\92\92\95\95\44\95\124\92\92\95\95\95\124\124\95\95\95\47\34\41\10\112\114\105\110\116\40\34\94\52\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\124\32\124\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\34\41\10\112\114\105\110\116\40\34\94\52\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\124\95\124\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\32\34\41\10\112\114\105\110\116\40\34\94\52\34\41\10")()
